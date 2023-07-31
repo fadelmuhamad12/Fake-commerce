@@ -2,6 +2,7 @@ import Categories from "./Components/GetCategories/Categories";
 import GetProduct from "./Components/GetProduct/GetProduct";
 import Hero from "./Components/Hero/Hero";
 import Navbar from "./Components/Navbar/Navbar";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (

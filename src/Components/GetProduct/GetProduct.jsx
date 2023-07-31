@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import Cards from "../Cards/Cards";
 import axios from "axios";
 import ModalSelected from "./ModalSelected";
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
 
 const GetProduct = () => {
   const [products, setProducts] = useState([]);
@@ -34,7 +32,7 @@ const GetProduct = () => {
 
   return (
     <>
-      <h3 className="text-2xl font-bold mt-12 mx-12">Terbanyak Kejual</h3>
+      <h3 className="text-2xl font-bold mt-12 mx-12">*Recommendations</h3>
       <Cards>
         {products.slice(0, 12).map((product) => {
           return (
@@ -56,22 +54,11 @@ const GetProduct = () => {
         })}
       </Cards>
 
-      {/* <ModalSelected products={products} setProducts={setProducts} title={product.data.title} /> */}
-
-      <Modal show={modal} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>Woohoo, you are reading this text in a modal!</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      <ModalSelected
+        handleClose={handleClose}
+        SelectedProduct={SelectedProduct}
+        modal={modal}
+      />
     </>
   );
 };
