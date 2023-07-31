@@ -1,40 +1,37 @@
 import React, { useEffect, useState } from "react";
+import ImageCat from "./ImageCat";
+import axios from "axios";
 
 const GetCategories = () => {
   const [categories, setCategories] = useState([]);
 
-  const fetchCategories = async () => {
-    try {
-      const response = await fetch(
-        "https://fakestoreapi.com/products/categories"
-      );
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.log(error);
-    }
+  const fetchCategory = async () => {
+    const categories= await axios.get(
+      "https://fakestoreapi.com/products/categories"
+    );
+
+    setCategories(categories.data);
   };
 
   useEffect(() => {
-    const fetchCategoriesData = async () => {
-      const categoriesData = await fetchCategories();
-      if (categoriesData) {
-        setCategories(categoriesData);
-      }
-    };
-
-    fetchCategoriesData();
+    fetchCategory();
   }, []);
 
   return (
-    <div className="flex w-full flex-row justify-center mt-4 gap-2 text-center">
-      {categories.map((category) => {
-        return (
-          <div key={category} className="bg-gray-200 rounded-xl">
-            <h5 className="p-1">{category}</h5>
-          </div>
-        );
-      })}
+    <div>
+      <div className="flex flex-row justify-center w-full mx-auto p-4 mt-4 gap-4 text-center bg-gray-400 xl:w-4/5 md:w-4/5 rounded-lg">
+        {categories.map((category) => {
+          return (
+            <div key={category}>
+              <div className="flex justify-center ">
+                <ImageCat />
+              </div>
+
+              <h5 className="p-1 text-white font-bold">{category}</h5>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };

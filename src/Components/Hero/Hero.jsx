@@ -1,6 +1,6 @@
 import React from "react";
 import ads from "../../assets/ads.png";
-// import Carousel from "./Carousel";
+
 
 const Hero = () => {
   return (

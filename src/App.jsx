@@ -1,4 +1,4 @@
-import GetCategories from "./Components/GetCategories/GetCategories";
+import Categories from "./Components/GetCategories/Categories";
 import GetProduct from "./Components/GetProduct/GetProduct";
 import Hero from "./Components/Hero/Hero";
 import Navbar from "./Components/Navbar/Navbar";
@@ -8,7 +8,7 @@ function App() {
     <>
       <Navbar />
       <Hero />  {/*SEARCHBAR SAMA FOTO SEPATU */}
-      <GetCategories /> {/*KATEGORI */}
+      <Categories />{/*KATEGORI */}
       <GetProduct />
     </>
   );
