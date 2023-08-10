@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Cards from "../../Components/Cards/Cards";
+import Navbar from "../../Components/Navbar/Navbar";
 
 const Electronics = () => {
   const [electronics, setElectronics] = useState([]);
@@ -22,13 +23,21 @@ const Electronics = () => {
 
   return (
     <>
+      <Navbar />
       {electronics.map((electronic) => {
         return (
-          <Cards >
-            <img src={electronic.image} alt="" />
-            <h5 className="font-bold tex-2xl">{electronic.title}</h5>
-            
-          </Cards>
+          <div className="bg-slate-200">
+            <Cards>
+              <div className="flex flex-row">
+                <img src={electronic.image} alt="Photo" />
+                <p>{electronic.title}</p>
+                <p>{electronic.price}</p>
+                <div>
+                  <button className="bg-blue-400 rounded-md  px-4 py-1 ml-2">Buy</button>
+                </div>
+              </div>
+            </Cards>
+          </div>
         );
       })}
     </>

@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Cards from "../../Components/Cards/Cards";
+import Navbar from "../../Components/Navbar/Navbar";
 
 const Jewelry = () => {
   const [jewelrys, setJewelrys] = useState([]);
@@ -23,10 +24,11 @@ const Jewelry = () => {
 
   return (
     <>
+    <Navbar />
       {jewelrys.map((jewelry) => {
         return (
           <Cards>
-            <img src={jewelry.image} alt="" />
+            <img src={jewelry.image} />
             <div>{jewelry.title}</div>
           </Cards>
         );
