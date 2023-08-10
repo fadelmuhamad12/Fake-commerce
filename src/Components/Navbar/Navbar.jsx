@@ -2,13 +2,14 @@ import React from "react";
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const navigation = [
-    { name: "Electronics", href: "#", current: true },
-    { name: "Jewelry", href: "#", current: false },
-    { name: "Men's clothing", href: "#", current: false },
-    { name: "Women's clothing", href: "#", current: false },
+    { name: "Electronics", href: "/Electronics", current: false},
+    { name: "Jewelry", href: "/Jewelry", current: false },
+    { name: "Men's clothing", href: "/MensCloth", current: false },
+    { name: "Women's clothing", href: "/WomenCloth", current: false },
   ];
 
   function classNames(...classes) {
