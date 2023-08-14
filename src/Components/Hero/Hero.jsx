@@ -1,17 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import ads from "../../assets/ads.png";
 
-
 const Hero = () => {
+
   return (
     <>
-      <div className=" flex justify-center mt-16">
+      {/* <div className=" flex justify-center mt-16">
         <input
+          onChange={searchBar}
+          value={search}
           type="text"
           placeholder="What Are You Looking For ?"
           className="bg-gray-200 p-2 w-full xl:w-1/3 md:w-1/2 rounded-xl placeholder:text-black mx-2"
         />
-      </div>
+      </div> */}
       {/* <Carousel /> */}
       <div className="flex justify-center mt-12 ">
         <img
