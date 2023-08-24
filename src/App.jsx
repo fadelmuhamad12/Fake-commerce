@@ -5,6 +5,7 @@ import Home from "./Pages/Home";
 import Jewelry from "./Pages/Jewelry/Jewelry";
 import MensCloth from "./Pages/MensCloth/MensCloth";
 import WomenCloth from "./Pages/WomenCloth/WomenCloth";
+import Cart from "./Pages/Cart/Cart";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route exact path="/Electronics" Component={Electronics}></Route>
           <Route exact path="/MensCloth" Component={MensCloth}></Route>
           <Route exact path="/WomenCloth" Component={WomenCloth}></Route>
+          <Route exact path="Cart" Component={Cart} ></Route>
         </Routes>
       </Router>
     </div>

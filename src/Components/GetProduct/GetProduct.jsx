@@ -2,12 +2,26 @@ import React, { useEffect, useState } from "react";
 import Cards from "../Cards/Cards";
 import axios from "axios";
 import ModalSelected from "./ModalSelected";
+import { useDispatch } from "react-redux";
+import { cartActions } from "../../store/cart-Slice";
 
-const GetProduct = () => {
+
+const GetProduct = ({id}) => {
   const [products, setProducts] = useState([]);
   const [modal, setModal] = useState(false);
   const [SelectedProduct, setSelectedProduct] = useState(null);
   const [search, setSearch] = useState("");
+
+ 
+
+  const dispatch = useDispatch();
+
+  const addToCartHandler = () => {
+    dispatch(cartActions.addItemToCart({
+      id,
+    
+    }))
+  }
 
   const searchBar = (e) => {
     setSearch(e.target.value);
@@ -47,6 +61,7 @@ const GetProduct = () => {
         />
       </div>
       <h3 className="text-2xl font-bold mt-12 mx-12">*Recommendations</h3>
+
       <Cards>
         {products
           .filter((product) => {
@@ -57,30 +72,26 @@ const GetProduct = () => {
 
           .map((product) => {
             return (
-              <div
-                key={product.id}
-                className="cursor-pointer"
-                onClick={() => handleShow(product)}
-              >
-                <h5>{product.title}</h5>
+              <div className="border-solid border-2 border-sky-300">
+                <div key={product.id} className="cursor-pointer">
+                  <h5>{product.title}</h5>
 
-                <div>
-                  <img
-                    src={product.image}
-                    alt="img"
-                    style={{ width: "150px" }}
-                  />
-                </div>
-                <p className="flex ml-5 xl:ml-12 md:ml-12 mt-2 font-bold">
-                  $ {product.price}
-                </p>
-                <div className="flex flex-row gap-4 mt-2">
-                  <div className="bg-blue-500 rounded-lg p-1 text-center hover:bg-blue-400 mt-2">
-                    <button>Buy</button>
+                  <div className="lg:w-1/2 m-auto w-3/4">
+                    <img src={product.image} alt="img" />
                   </div>
+                  <p className="flex ml-5 xl:ml-12 md:ml-12 mt-2 font-bold">
+                    $ {product.price}
+                  </p>
+                  <div className="flex flex-row lg:gap-4 mx-0.5 mt-2 gap-2">
+                    <div className="flex bg-blue-500 rounded-lg p-1 text-center hover:bg-blue-400 mt-2 text-white  ">
+                      <button onClick={addToCartHandler}>Add</button>
+                    </div>
 
-                  <div className="bg-blue-500 rounded-lg p-1 text-center hover:bg-blue-400 mt-2">
-                    <button>Details</button>
+                    <div className="bg-blue-500 rounded-lg p-1 text-center hover:bg-blue-400 mt-2 text-white">
+                      <button onClick={() => handleShow(product)}>
+                        Details
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>

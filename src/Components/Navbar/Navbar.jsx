@@ -1,22 +1,42 @@
-import React from "react";
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+
 
 const Navbar = () => {
+  const totalQuantity = useSelector(state => state.cart.totalQuantity);
+
   const navigation = [
-    { name: "Electronics", href: "/Electronics", current: false},
-    { name: "Jewelry", href: "/Jewelry", current: false },
-    { name: "Men's clothing", href: "/MensCloth", current: false },
-    { name: "Women's clothing", href: "/WomenCloth", current: false },
+    { name: "Electronics", href: "Electronics", current: false },
+    { name: "Jewelry", href: "Jewelry", current: false },
+    { name: "Men's clothing", href: "MensCloth", current: false },
+    { name: "Women's clothing", href: "WomenCloth", current: false },
   ];
+
+  const cartIcon = (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={1.5}
+      stroke="currentColor"
+      className="w-6 h-6"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
+      />
+    </svg>
+  );
 
   function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
   }
   return (
-    <Disclosure as="nav" className="bg-gray-800">
+    <Disclosure as="nav" className="bg-ceria-500">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -34,10 +54,11 @@ const Navbar = () => {
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
-                    <Link to="/" className="text-white font-bold cursor-pointer">Fake Commerce</Link>
-                 
+                  <Link to="/" className="text-white font-bold cursor-pointer">
+                    Fake Commerce
+                  </Link>
                 </div>
-                <div className="hidden sm:ml-6 sm:block">
+                <div className="hidden sm:ml-6 sm:block text-white">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
                       <a
@@ -46,7 +67,7 @@ const Navbar = () => {
                         className={classNames(
                           item.current
                             ? "bg-gray-900 text-white"
-                            : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                            : "text-white hover:bg-slate-600",
                           "rounded-md px-3 py-2 text-sm font-medium"
                         )}
                         aria-current={item.current ? "page" : undefined}
@@ -58,13 +79,15 @@ const Navbar = () => {
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                <button
-                  type="button"
-                  className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                >
-                  <span className="sr-only">View notifications</span>
-                  <BellIcon className="h-6 w-6" aria-hidden="true" />
-                </button>
+                <Link to="Cart">
+                  <button
+                    type="button"
+                    className="flex text-white border-solid border-2 border-white px-4 rounded-md hover:bg-blue-500 "
+                  >
+                    {cartIcon}
+                    <span className="ml-1">{totalQuantity}</span>
+                  </button>
+                </Link>
 
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
